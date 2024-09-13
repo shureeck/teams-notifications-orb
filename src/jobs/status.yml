@@ -29,6 +29,6 @@ steps:
       descrioption: setup message and color for case if tests passed.
 
   - send_msg:
-      teams_url: << teams_url >>
+      teams_url: << parameters.teams_url >>
       message: ${MSG_STATUS}
       color: "good"
