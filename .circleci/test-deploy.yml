@@ -28,8 +28,10 @@ jobs:
     steps:
       - checkout
       # Run your orb's commands to validate them.
-      - teams-notification/status:
+      - teams-notification/send_msg:
           teams_url: "NEXT URL"
+          message: "Testst finished successfully"
+          color: "good"
 workflows:
   test-deploy:
     jobs:
