@@ -26,7 +26,7 @@ MSG_TEMPLTE=$(cat <<END_HEREDOC
                                 ]
                             }, {
                                 "type": "TextBlock",
-                                "text": "$MESSAGE,
+                                "text": "$MESSAGE",
                                 "style": "heading",
                                 "weight": "bolder",
                                 "size": "large"
