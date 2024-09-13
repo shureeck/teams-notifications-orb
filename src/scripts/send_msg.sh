@@ -60,4 +60,4 @@ END_HEREDOC
 )
 echo "$MSG_TEMPLTE"
 echo "$TEAMS_URL"
-curl -X POST -H 'Content-type: application/json' -d "$MSG_TEMPLTE" $TEAMS_URL
+curl -X POST -H 'Content-type: application/json' -d "$MSG_TEMPLTE" "$TEAMS_URL"
