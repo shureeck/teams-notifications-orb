@@ -1,7 +1,7 @@
 #!/bin/bash
-
-MSG_TEMPLATE=$(cat <<END_HEREDOC {"msg":"$MESSAGE"} END_HEREDOC)
-
-
-echo "$MSG_TEMPLATE"
+MSG_TEMPLTE=$(cat <<END_HEREDOC  
+    {"msg":"$MESSAGE"}
+END_HEREDOC
+)
+echo "$MSG_TEMPLTE"
 curl -X POST -H 'Content-type: application/json' -d "$MSG_TEMPLATE" $TEAMS_URL
