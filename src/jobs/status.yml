@@ -5,6 +5,7 @@ parameters:
   teams_url:
     type: string
     description: URL of the Teams Workflow
+    default: http://localhost
   failed_message:
     type: string
     default: "🔴 Failed"
