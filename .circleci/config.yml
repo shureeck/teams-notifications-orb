@@ -23,6 +23,7 @@ workflows:
       - orb-tools/continue:
           pipeline_number: << pipeline.number >>
           vcs_type: github
-          orb_name: <orb-name>
-          requires: [orb-tools/lint, orb-tools/pack, orb-tools/review, shellcheck/check]
+          orb_name: teams-notification
+          requires:
+            [orb-tools/lint, orb-tools/pack, orb-tools/review, shellcheck/check]
           filters: *filters
