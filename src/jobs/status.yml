@@ -17,19 +17,17 @@ steps:
   - run:
       name: Set failed status
       command: |
-        echo 'export COLOR_STATUS="attention"' >> $BASH_ENV
-        echo 'export MSG_STATUS="<< parameters.failed_message >>"' >> $BASH_ENV
+        echo 'export MSG_STATUS="failed"' >> $BASH_ENV
       when: on_fail
       descrioption: setup message and color for case if tests failed.
   - run:
       name: Set Success status
       command: |
-        echo 'export COLOR_STATUS="good"' >> $BASH_ENV
-        echo 'export MSG_STATUS="<< parameters.passed_message >>"' >> $BASH_ENV
+        echo 'export MSG_STATUS="success"' >> $BASH_ENV
       when: on_success
       descrioption: setup message and color for case if tests passed.
 
   - send_msg:
       teams_url: << teams_url >>
       message: ${MSG_STATUS}
-      color: ${COLOR_STATUS}
+      color: "good"
