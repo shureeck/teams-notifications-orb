@@ -6,11 +6,11 @@ parameters:
     type: string
     description: URL of the Teams Workflow
   failed_message:
-    types: string
+    type: string
     default: "🔴 Failed"
     description: "Message text if tests are failed"
   passed_message:
-    types: string
+    type: string
     default: "🟢 Successful"
     description: "Message text if tests are passed"
 steps:
