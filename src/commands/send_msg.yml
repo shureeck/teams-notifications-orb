@@ -4,10 +4,10 @@ parameters:
     type: string
     description: URL of the Teams Workflow
   message:
-    types: string
+    type: string
     description: "Message text"
   color:
-    types: string
+    type: string
     description: "Color good or attention"
 steps:
   - run:
