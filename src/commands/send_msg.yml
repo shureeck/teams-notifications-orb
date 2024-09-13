@@ -1,0 +1,20 @@
+description: This command send notification to specified teams URL aftre tests
+parameters:
+  teams_url:
+    type: string
+    description: URL of the Teams Workflow
+  message:
+    type: string
+    description: "Message text"
+  color:
+    type: string
+    description: "Color good or attention"
+steps:
+  - run:
+      environment:
+        TEAMS_URL: <<parameters.teams_url>>
+        MESSAGE: <<parameters.message>>
+        COLOR: <<parameters.color>>
+      name: Send message
+      command: <<include(scripts/send_msg.sh)>>
+      when: always

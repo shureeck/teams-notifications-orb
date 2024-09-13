@@ -1,0 +1,34 @@
+description: Sens status message to Teams Workflow via Web Hook
+executor: default
+
+parameters:
+  teams_url:
+    type: string
+    description: URL of the Teams Workflow
+  failed_message:
+    type: string
+    default: "🔴 Failed"
+    description: "Message text if tests are failed"
+  passed_message:
+    type: string
+    default: "🟢 Successful"
+    description: "Message text if tests are passed"
+steps:
+  - run:
+      name: Set failed status
+      command: |
+        echo 'export MSG_STATUS="failed"' >> $BASH_ENV
+      when: on_fail
+      descrioption: setup message and color for case if tests failed.
+  - run:
+      name: Set Success status
+      command: |
+        echo 'export MSG_STATUS="success"' >> $BASH_ENV
+      when: on_success
+      descrioption: setup message and color for case if tests passed.
+
+  - send_msg:
+      teams_url: << parameters.teams_url >>
+      message: ${MSG_STATUS}
+      color: "good"
+#test
