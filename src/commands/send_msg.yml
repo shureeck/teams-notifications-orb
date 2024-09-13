@@ -14,7 +14,7 @@ steps:
       environment:
         TEAMS_URL: <<parameters.teams_url>>
         MESSAGE: <<parameters.message>>
-        COLOR: <<parameters:color>>
+        COLOR: <<parameters.color>>
       name: Send message
       command: <<include(scripts/send_msg.sh)>>
       when: always
