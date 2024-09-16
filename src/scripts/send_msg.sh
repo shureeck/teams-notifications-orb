@@ -1,4 +1,17 @@
-#!/bin/bash
+#!/bin/
+if [$REPORT_URL -ne ""]
+then
+REPORT_BUTTON=$(cat <<END_HEREDOC
+,{
+                                "type": "Action.OpenUrl",
+                                "url": "$REPORT_URL",
+                                "title": "View Report"
+                            }
+END_HEREDOC
+)
+fi
+else REPORT_BUTTON=""
+
 MSG_TEMPLTE=$(cat <<END_HEREDOC  
     {
             "type": "message",
@@ -46,11 +59,8 @@ MSG_TEMPLTE=$(cat <<END_HEREDOC
                                 "type": "Action.OpenUrl",
                                 "url": "$CIRCLE_BUILD_URL",
                                 "title": "Visit Job"
-                            },{
-                                "type": "Action.OpenUrl",
-                                "url": "https://output.circle-artifacts.com/output/job/$CIRCLE_WORKFLOW_JOB_ID/artifacts/0/allure-report/index.html",
-                                "title": "View Report"
                             }
+                            $REPORT_BUTTON
                            ]
                           }
                          }

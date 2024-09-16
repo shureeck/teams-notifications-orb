@@ -11,6 +11,10 @@ parameters:
     type: string
     default: "🟢 Successful"
     description: "Message text if tests are passed"
+  report_url:
+    type: string
+    default: ""
+    description: "URL to the tests Reports"
 steps:
   - run:
       name: Set failed message
@@ -35,6 +39,7 @@ steps:
   - run:
       environment:
         TEAMS_URL: <<parameters.teams_url>>
+        REPORT_URL: << report_url >>
       name: Send message
       command: <<include(scripts/send_msg.sh)>>
       when: always
