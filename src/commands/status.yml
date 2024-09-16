@@ -19,6 +19,11 @@ steps:
   - run:
       name: Set failed message
       description: Set failed message
+      command: echo 'export TEAMS_URL="<< parameters.teams_url >>"' >> $BASH_ENV
+      when: always
+  - run:
+      name: Setup Teams URL
+      description: Setup Teams URL
       command: echo 'export MESSAGE="<< parameters.failed_message >>"' >> $BASH_ENV
       when: on_fail
   - run:
@@ -38,7 +43,6 @@ steps:
       when: on_success
   - run:
       environment:
-        TEAMS_URL: <<parameters.teams_url>>
         REPORT_URL: << parameters.report_url >>
       name: Send message
       shell: "/bin/bash -eo pipefail"

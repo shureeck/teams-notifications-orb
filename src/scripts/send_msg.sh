@@ -72,5 +72,5 @@ MSG_TEMPLTE=$(cat <<END_HEREDOC
 END_HEREDOC
 )
 echo "$MSG_TEMPLTE"
-echo  "$(cat $TEAMS_URL)"
-curl -X POST -H 'Content-type: application/json' -d "$MSG_TEMPLTE" "$(cat $TEAMS_URL)"
+echo  "$TEAMS_URL"
+curl -X POST -H 'Content-type: application/json' -d "$MSG_TEMPLTE" "$TEAMS_URL"
