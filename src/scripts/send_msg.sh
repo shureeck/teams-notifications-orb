@@ -1,5 +1,5 @@
 #!/bin/bash
-if [[ -n "${REPORT_URL}" ] ]
+if [[ -n "${REPORT_URL}" ]]
 then
 REPORT_BUTTON=$(cat <<END_HEREDOC
 ,{
