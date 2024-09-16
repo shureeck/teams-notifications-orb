@@ -17,9 +17,14 @@ parameters:
     description: "URL to the tests Reports"
 steps:
   - run:
-      name: Set failed message
-      description: Set failed message
+      name: Set up teams url
+      description: Set up teams url
       command: echo 'export TEAMS_URL="<< parameters.teams_url >>"' >> $BASH_ENV
+      when: always
+  - run:
+      name: Set up report url
+      description: Set up report url
+      command: echo 'export REPORT_URL="<< parameters.report_url >>"' >> $BASH_ENV
       when: always
   - run:
       name: Setup Teams URL
