@@ -26,17 +26,18 @@ steps:
         echo 'export MSG_STATUS="success"' >> $BASH_ENV
       when: on_success
       descrioption: setup message and color for case if tests passed.
-  - when: 
+  - when:
       condition:
-        equels: [failed, "$MSG_STATUS"]  
-      steps: 
+        equels: [failed, "$MSG_STATUS"]
+      steps:
         - send_msg:
             teams_url: << parameters.teams_url >>
             message: << parameters.failed_message >>
             color: "attention"
+  - when:
       condition:
-        equels: [success, "$MSG_STATUS"]  
-      steps: 
+        equels: [success, "$MSG_STATUS"]
+      steps:
         - send_msg:
             teams_url: << parameters.teams_url >>
             message: << parameters.passed_message >>
