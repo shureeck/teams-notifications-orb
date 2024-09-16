@@ -12,7 +12,7 @@ parameters:
     default: "🟢 Successful"
     description: "Message text if tests are passed"
 steps:
- - run:
+  - run:
       name: Set failed status
       command: |
         echo 'export MSG_STATUS="failed"' >> $BASH_ENV
