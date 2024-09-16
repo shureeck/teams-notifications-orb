@@ -25,7 +25,7 @@ steps:
   - run:
       name: Set Successfull message
       description: Set Successfull message
-      command: echo 'export MSG="<< parameters.passed_message >>"' >> $BASH_ENV
+      command: echo 'export MESSAGE="<< parameters.passed_message >>"' >> $BASH_ENV
       when: on_success
   - run:
       name: Set Successfull color
@@ -35,8 +35,6 @@ steps:
   - run:
       environment:
         TEAMS_URL: <<parameters.teams_url>>
-        MESSAGE: $MSG
-        COLOR: $COLOR
       name: Send message
       command: <<include(scripts/send_msg.sh)>>
       when: always
