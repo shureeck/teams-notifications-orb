@@ -6,17 +6,18 @@ usage:
   orbs:
     teams-notification: shureeck/teams-notification@1.1.0
 jobs:
-  steps:
-    - run:
-        name: Test run command.
-        description: Command that executes tests
-        command: yarn test
-    - teams-notification/status:
-        teams_url: "https://microsoft.teams.workflow.url"
-        failed_message: "Tests failed"
-        passed_message: "Tests passed"
-        report_url: "http://localhost/reports/index.html"
+  run-tests:
+    steps:
+      - run:
+          name: Test run command.
+          description: Command that executes tests
+          command: yarn test
+      - teams-notification/status:
+          teams_url: "https://microsoft.teams.workflow.url"
+          failed_message: "Tests failed"
+          passed_message: "Tests passed"
+          report_url: "http://localhost/reports/index.html"
   workflows:
     use-my-orb:
       jobs:
-        - <orb-name>/<job-name>
+        - run-tests
