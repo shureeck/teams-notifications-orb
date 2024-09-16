@@ -15,7 +15,7 @@ steps:
   - run:
       name: Set failed message
       description: Set failed message
-      command: echo 'export MSG="<< parameters.failed_message >>"' >> $BASH_ENV
+      command: echo 'export MESSAGE="<< parameters.failed_message >>"' >> $BASH_ENV
       when: on_fail
   - run:
       name: Set failed color
