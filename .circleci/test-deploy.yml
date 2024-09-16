@@ -41,9 +41,9 @@ jobs:
       - image: cimg/base:current
     steps:
       - run:
-          name: "Failed commnd"
-          description: "Emulate failed test"
-          command: exit 1
+          name: "Test commnd"
+          description: "Emulate test"
+          command: exit 0
       - teams-notification/status:
           teams_url: "https://prod-185.westus.logic.azure.com:443/workflows/b11e01c116ef4db0952f80068bbd5909/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=7N_pCDKQhibDDiJqD_J4V8IsW51oNapo0thgwpUxncc"
   status-with-report:
@@ -67,6 +67,8 @@ workflows:
           filters: *filters
       - status-default-messages:
           filters: *filters
+      - status-with-report:
+          filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
           filters: *release-filters
@@ -79,5 +81,6 @@ workflows:
             - orb-tools/pack
             - command-test
             - status-default-messages
+            - status-with-report
           context: <publishing-context>
           filters: *release-filters
