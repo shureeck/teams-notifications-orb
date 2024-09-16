@@ -41,5 +41,6 @@ steps:
         TEAMS_URL: <<parameters.teams_url>>
         REPORT_URL: << parameters.report_url >>
       name: Send message
+      shell: "/bin/bash -eo pipefail"
       command: <<include(scripts/send_msg.sh)>>
       when: always
