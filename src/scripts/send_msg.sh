@@ -1,4 +1,4 @@
-#!/bin/
+#!/bin/bash
 if [$REPORT_URL -ne ""]
 then
 REPORT_BUTTON=$(cat <<END_HEREDOC
