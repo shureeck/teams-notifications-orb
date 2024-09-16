@@ -1,0 +1,58 @@
+description: This command send notification to specified teams URL aftre tests
+parameters:
+  teams_url:
+    type: string
+    description: URL of the Teams Workflow
+  failed_message:
+    type: string
+    default: "🔴 Failed"
+    description: "Message text if tests are failed"
+  passed_message:
+    type: string
+    default: "🟢 Successful"
+    description: "Message text if tests are passed"
+steps:
+ - run:
+      name: Set failed status
+      command: |
+        echo 'export MSG_STATUS="failed"' >> $BASH_ENV
+      when: on_fail
+      descrioption: setup message and color for case if tests failed.
+  - run:
+      name: Set Success status
+      command: |
+        echo 'export MSG_STATUS="success"' >> $BASH_ENV
+      when: on_success
+      descrioption: setup message and color for case if tests passed.
+  - when:
+      condition:
+        equels: [failed, "$MSG_STATUS"]
+      steps:
+        - run:
+            name: Set failed message
+            description: Set failed message
+            command: echo 'export MSG="<< parameters.failed_message >>"' >> $BASH_ENV
+        - run:
+            name: Set failed color
+            description: Set failed color
+            command: echo 'export COLOR="attention"' >> $BASH_ENV
+  - when:
+      condition:
+        equels: [success, "$MSG_STATUS"]
+      steps:
+        - run:
+            name: Set Successfull message
+            description: Set Successfull message
+            command: echo 'export MSG="<< parameters.passed_message >>"' >> $BASH_ENV
+        - run:
+            name: Set Successfull color
+            description: Set Successfull color
+            command: echo 'export COLOR="good"' >> $BASH_ENV
+  - run:
+      environment:
+        TEAMS_URL: <<parameters.teams_url>>
+        MESSAGE: $MSG
+        COLOR: $COLOR
+      name: Send message
+      command: <<include(scripts/send_msg.sh)>>
+      when: always

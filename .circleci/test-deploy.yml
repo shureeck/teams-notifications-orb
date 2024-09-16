@@ -27,18 +27,22 @@ jobs:
       - image: cimg/base:current
     steps:
       - checkout
+      - run:
+          name: "Passed commnd"
+          description: "Emulate successfull test"
+          command: exit 0
       # Run your orb's commands to validate them.
-      - teams-notification/send_msg:
+      - teams-notification/status:
           teams_url: "https://prod-185.westus.logic.azure.com:443/workflows/b11e01c116ef4db0952f80068bbd5909/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=7N_pCDKQhibDDiJqD_J4V8IsW51oNapo0thgwpUxncc"
-          message: "Testst finished successfully"
-          color: "good"
+          failed_message: "Bad"
+          passed_message: "Good"
   status-default-messages:
     docker:
       - image: cimg/base:current
     steps:
       - run:
           name: "Failed commnd"
-          description: "Emulatefailed test"
+          description: "Emulate failed test"
           command: exit 1
       - teams-notification/status:
           teams_url: "https://prod-185.westus.logic.azure.com:443/workflows/b11e01c116ef4db0952f80068bbd5909/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=7N_pCDKQhibDDiJqD_J4V8IsW51oNapo0thgwpUxncc"
@@ -49,11 +53,6 @@ workflows:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
       - command-test:
-          filters: *filters
-      - teams-notification/status:
-          teams_url: "https://prod-185.westus.logic.azure.com:443/workflows/b11e01c116ef4db0952f80068bbd5909/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=7N_pCDKQhibDDiJqD_J4V8IsW51oNapo0thgwpUxncc"
-          failed_message: "🔴 Not Done"
-          passed_message: "🟢 Done"
           filters: *filters
       - status-default-messages:
           filters: *filters
@@ -68,7 +67,6 @@ workflows:
           requires:
             - orb-tools/pack
             - command-test
-            - teams-notification/status
             - status-default-messages
           context: <publishing-context>
           filters: *release-filters
