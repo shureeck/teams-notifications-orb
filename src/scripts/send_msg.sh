@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ $REPORT_URL -ne "" ]
+if [ "$REPORT_URL" -ne "" ]
 then
 REPORT_BUTTON=$(cat <<END_HEREDOC
 ,{
@@ -10,7 +10,6 @@ REPORT_BUTTON=$(cat <<END_HEREDOC
 END_HEREDOC
 )
 fi
-else REPORT_BUTTON=""
 
 MSG_TEMPLTE=$(cat <<END_HEREDOC  
     {
@@ -70,4 +69,4 @@ END_HEREDOC
 )
 echo "$MSG_TEMPLTE"
 echo "$TEAMS_URL"
-curl -X POST -H 'Content-type: application/json' -d "$MSG_TEMPLTE" "$TEAMS_URL"
+#curl -X POST -H 'Content-type: application/json' -d "$MSG_TEMPLTE" "$TEAMS_URL"

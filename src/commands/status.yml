@@ -39,7 +39,7 @@ steps:
   - run:
       environment:
         TEAMS_URL: <<parameters.teams_url>>
-        REPORT_URL: << report_url >>
+        REPORT_URL: << parameters.report_url >>
       name: Send message
       command: <<include(scripts/send_msg.sh)>>
       when: always
