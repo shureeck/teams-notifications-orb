@@ -1,17 +1,49 @@
-# Orb Template
+# CircleCI orb: teams-notification
 
-<!---
-[![CircleCI Build Status](https://circleci.com/gh/<organization>/<project-name>.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/<organization>/<project-name>) [![CircleCI Orb Version](https://badges.circleci.com/orbs/<namespace>/<orb-name>.svg)](https://circleci.com/developer/orbs/orb/<namespace>/<orb-name>) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/<organization>/<project-name>/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+This orb is designed to send notifications using Microsoft teams workflow API.
 
---->
+## Notification example:
 
-A project template for Orbs.
+![](./imgs/message_example.png)
 
-This repository is designed to be automatically ingested and modified by the CircleCI CLI's `orb init` command.
+## Teams workfow configurations:
 
-_**Edit this area to include a custom title and description.**_
+![](./imgs/workflow.png)
 
----
+## Commands
+
+### Status
+
+ <table>
+ <th>PARAMETER</th>
+ <th>DESCRIPTION</th>
+ <th>REQUIRED</th>
+ <th>DEFAULT</th>
+<tr>
+<td>teams_url</td>
+ <td>Teams workflow URL</td>
+ <td>YES</td>
+ <td>-</td>
+ </tr>
+ <tr>
+<td>failed_message</td>
+ <td>Message that would be send if tests will be failed</td>
+ <td>NO</td>
+ <td>🔴 Failed</td>
+ </tr>
+  <tr>
+<td>passed_message</td>
+ <td>Message that would be send if tests will be passed</td>
+ <td>NO</td>
+ <td>🟢 Successful</td>
+ </tr>
+   <tr>
+<td>report_url</td>
+ <td> URL to test report. Button View Report become availible in the message if parameter setup. </td>
+ <td>NO</td>
+ <td></td>
+ </tr>
+ </table>
 
 ## Resources
 

@@ -1,12 +1,21 @@
 description: >
-  Sample example description.
-# Provide a use-case based example for using this orb.
-# Everything in the `usage` section will be displayed in the orb registry.
-# Comments are not retained.
+  Example teams-notification orb usage in the code
+
 usage:
   version: 2.1
   orbs:
-    <orb-name>: <namespace>/<orb-name>@1.2.3
+    teams-notification: shureeck/teams-notification@1.1.0
+jobs:
+  steps:
+    - run:
+        name: Test run command.
+        description: Command that executes tests
+        command: yarn test
+    - teams-notification/status:
+        teams_url: "https://microsoft.teams.workflow.url"
+        failed_message: "Tests failed"
+        passed_message: "Tests passed"
+        report_url: "http://localhost/reports/index.html"
   workflows:
     use-my-orb:
       jobs:
